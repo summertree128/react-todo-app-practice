@@ -62,7 +62,8 @@ class TodoApp extends React.Component {
     this.setState({ items: newItems, text: "" });
   }
 
-  handleDelete(itemId) {
+  handleDelete(e) {
+    const itemId = e.target.value;
     const newItems = this.state.items.filter((item) => item.id != itemId);
     this.saveTodos(newItems);
     this.setState({ items: newItems });
@@ -109,8 +110,8 @@ class TodoList extends React.Component {
     );
   }
 
-  handleDelete(itemId) {
-    this.props.onDelete(itemId);
+  handleDelete(e) {
+    this.props.onDelete(e);
   }
 
   handleUpdate(itemId, text) {
@@ -170,7 +171,7 @@ class TodoItem extends React.Component {
 
   handleDelete(e) {
     e.preventDefault();
-    this.props.onDelete(e.target.value);
+    this.props.onDelete(e);
   }
 
   handleEdit(e) {
