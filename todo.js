@@ -69,7 +69,8 @@ class TodoApp extends React.Component {
     this.setState({ items: newItems });
   }
 
-  handleUpdate(itemId, text) {
+  handleUpdate(e, itemId, text) {
+    e.preventDefault();
     const newItems = [...this.state.items];
     const editedItem = newItems.find((item) => item.id == itemId);
     editedItem.text = text;
@@ -114,8 +115,8 @@ class TodoList extends React.Component {
     this.props.onDelete(e);
   }
 
-  handleUpdate(itemId, text) {
-    this.props.onUpdate(itemId, text);
+  handleUpdate(e, itemId, text) {
+    this.props.onUpdate(e, itemId, text);
   }
 }
 
@@ -133,7 +134,7 @@ class TodoItem extends React.Component {
     if (this.state.editing) {
       return (
         <div className="todo-item">
-          <form onSubmit={this.handleUpdate} className="todo-item-edit-form">
+          <form onSubmit={(e) => this.handleUpdate(e, this.props.item.id, this.state.text)} className="todo-item-edit-form">
             <input
               type="text"
               name="text"
@@ -179,9 +180,8 @@ class TodoItem extends React.Component {
     this.setState({ editing: true });
   }
 
-  handleUpdate(e) {
-    e.preventDefault();
-    this.props.onUpdate(this.props.item.id, this.state.text);
+  handleUpdate(e, itemId, text) {
+    this.props.onUpdate(e, itemId, text);
     this.setState({ editing: false });
   }
 
