@@ -63,6 +63,7 @@ class TodoApp extends React.Component {
   }
 
   handleDelete(e) {
+    e.preventDefault();
     const itemId = e.target.value;
     const newItems = this.state.items.filter((item) => item.id != itemId);
     this.saveTodos(newItems);
@@ -171,7 +172,6 @@ class TodoItem extends React.Component {
   }
 
   handleDelete(e) {
-    e.preventDefault();
     this.props.onDelete(e);
   }
 
