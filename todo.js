@@ -5,7 +5,7 @@ class TodoApp extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleSave = this.handleSave.bind(this);
 
     this.itemKey = "todos";
   }
@@ -22,7 +22,7 @@ class TodoApp extends React.Component {
         <TodoList
           items={this.state.items}
           onDelete={this.handleDelete}
-          onUpdate={this.handleUpdate}
+          onSave={this.handleSave}
         />
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="new-todo" className="todo-item-add-label">
@@ -70,7 +70,7 @@ class TodoApp extends React.Component {
     this.setState({ items: newItems });
   }
 
-  handleUpdate(e, itemId, text) {
+  handleSave(e, itemId, text) {
     e.preventDefault();
     const newItems = [...this.state.items];
     const editedItem = newItems.find((item) => item.id == itemId);
@@ -93,7 +93,7 @@ class TodoList extends React.Component {
   constructor(props) {
     super(props);
     this.handleDelete = this.handleDelete.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
   render() {
@@ -104,7 +104,7 @@ class TodoList extends React.Component {
             <TodoItem
               item={item}
               onDelete={this.handleDelete}
-              onUpdate={this.handleUpdate}
+              onSave={this.handleSave}
             />
           </li>
         ))}
@@ -116,8 +116,8 @@ class TodoList extends React.Component {
     this.props.onDelete(e);
   }
 
-  handleUpdate(e, itemId, text) {
-    this.props.onUpdate(e, itemId, text);
+  handleSave(e, itemId, text) {
+    this.props.onSave(e, itemId, text);
   }
 }
 
@@ -127,7 +127,7 @@ class TodoItem extends React.Component {
     this.state = { editing: false, text: this.props.item.text };
     this.handleDelete = this.handleDelete.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleSave = this.handleSave.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -135,7 +135,7 @@ class TodoItem extends React.Component {
     if (this.state.editing) {
       return (
         <div className="todo-item">
-          <form onSubmit={(e) => this.handleUpdate(e, this.props.item.id, this.state.text)} className="todo-item-edit-form">
+          <form onSubmit={(e) => this.handleSave(e, this.props.item.id, this.state.text)} className="todo-item-edit-form">
             <input
               type="text"
               name="text"
@@ -180,8 +180,8 @@ class TodoItem extends React.Component {
     this.setState({ editing: true });
   }
 
-  handleUpdate(e, itemId, text) {
-    this.props.onUpdate(e, itemId, text);
+  handleSave(e, itemId, text) {
+    this.props.onSave(e, itemId, text);
     this.setState({ editing: false });
   }
 
