@@ -65,7 +65,7 @@ class TodoApp extends React.Component {
   handleDelete(e) {
     e.preventDefault();
     const itemId = e.target.value;
-    const newItems = this.state.items.filter((item) => item.id != itemId);
+    const newItems = this.state.items.filter((item) => item.id !== itemId);
     this.saveTodos(newItems);
     this.setState({ items: newItems });
   }
@@ -73,7 +73,7 @@ class TodoApp extends React.Component {
   handleSave(e, itemId, text) {
     e.preventDefault();
     const newItems = [...this.state.items];
-    const editedItem = newItems.find((item) => item.id == itemId);
+    const editedItem = newItems.find((item) => item.id === itemId);
     editedItem.text = text;
     this.saveTodos(newItems);
     this.setState({ items: newItems });
