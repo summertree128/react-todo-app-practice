@@ -1,1 +1,38 @@
-/* Write your CSS if you want */
+.todo-item {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.todo-item-text {
+  width: 160px;
+  overflow-wrap: break-word;}
+
+.todo-item-button {
+  width: 48px;
+  height: 24px;
+  margin-left: 8px;
+  display: flex;
+  justify-content: center;
+  line-height: 1.5;
+}
+
+.todo-item-edit-form {
+  display: flex;
+}
+
+.todo-item-edit-input {
+  width: 160px;
+}
+
+.todo-item-add-label {
+  display: block;
+}
+
+.todo-item-add-input {
+  width: 160px;
+}
+
+.todo-item-add-button {
+  margin-left: 8px;
+}
