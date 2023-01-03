@@ -143,7 +143,6 @@ class TodoItem extends React.Component {
               onChange={this.handleChange}
               className="todo-item-edit-input"
             />
-            <input type="hidden" name="id" value={this.props.item.id} />
             <button className="todo-item-button">Save</button>
           </form>
         </div>
